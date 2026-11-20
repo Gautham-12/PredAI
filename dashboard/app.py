@@ -135,15 +135,39 @@ def inject_css():
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
 
     /* Global Typography Reset */
-    html, body, [class*="css"], [class*="st-"], .stApp {{
+    html, body, .stApp {{
         font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
         background-color: {PALETTE['page_bg']} !important;
         color: {PALETTE['text_primary']} !important;
     }}
 
-    /* Override all headings and paragraphs */
-    h1, h2, h3, h4, h5, h6, p, div, span, label, input, button {{
+    /* Headings, body text, and form controls */
+    h1, h2, h3, h4, h5, h6, p, label, input, textarea, div.stMarkdown, div.stText {{
         font-family: 'Plus Jakarta Sans', -apple-system, sans-serif !important;
+    }}
+
+    /* Explicitly preserve Material Symbols / Icons for Streamlit system UI buttons */
+    span[data-testid="stIconMaterial"],
+    [data-testid*="stIconMaterial"],
+    [data-testid*="stSidebarCollapseButton"] span,
+    [data-testid*="stSidebarCollapseButton"] button,
+    [data-testid="baseButton-headerNoPadding"] span,
+    [data-testid="baseButton-headerNoPadding"] button,
+    .material-symbols-rounded,
+    .material-symbols-outlined,
+    .material-icons {{
+        font-family: "Material Symbols Rounded", "Material Symbols Outlined", "Material Icons" !important;
+        font-style: normal !important;
+        font-size: 1.25rem !important;
+        line-height: 1 !important;
+        letter-spacing: normal !important;
+        text-transform: none !important;
+        display: inline-block !important;
+        white-space: nowrap !important;
+        word-wrap: normal !important;
+        direction: ltr !important;
+        -webkit-font-feature-settings: 'liga' !important;
+        -webkit-font-smoothing: antialiased !important;
     }}
 
     /* Remove Streamlit header & deploy button clutter */
