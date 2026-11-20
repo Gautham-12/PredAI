@@ -31,12 +31,28 @@ for _p in [str(_SRC), str(_ROOT)]:
 import numpy as np
 import pandas as pd
 
-from config import (
-    DATA_DIR, DATASETS, MODELS_DIR,
-    TRIAGE_P0_RUL_THRESHOLD, TRIAGE_P1_RUL_THRESHOLD,
-    TRIAGE_P2_RUL_THRESHOLD, TRIAGE_HITL_INTERVAL_THRESHOLD,
-    RUL_CAP, PSI_ALERT_THRESHOLD, PRIMARY_DATA_DIR,
-)
+import config
+import importlib
+try:
+    importlib.reload(config)
+except Exception:
+    pass
+
+DATA_DIR = getattr(config, "DATA_DIR", _ROOT / "02_NASA_CMAPSS_Turbofan")
+DATASETS = getattr(config, "DATASETS", [
+    "02_NASA_CMAPSS_Turbofan (FD001 - Primary)",
+    "FD002 (Multi-Regime Six Conditions)",
+    "FD003 (Two Fault Modes)",
+    "FD004 (Multi-Regime + Two Fault Modes)",
+])
+MODELS_DIR = getattr(config, "MODELS_DIR", _ROOT / "models")
+TRIAGE_P0_RUL_THRESHOLD = getattr(config, "TRIAGE_P0_RUL_THRESHOLD", 10)
+TRIAGE_P1_RUL_THRESHOLD = getattr(config, "TRIAGE_P1_RUL_THRESHOLD", 25)
+TRIAGE_P2_RUL_THRESHOLD = getattr(config, "TRIAGE_P2_RUL_THRESHOLD", 45)
+TRIAGE_HITL_INTERVAL_THRESHOLD = getattr(config, "TRIAGE_HITL_INTERVAL_THRESHOLD", 35)
+RUL_CAP = getattr(config, "RUL_CAP", 125)
+PSI_ALERT_THRESHOLD = getattr(config, "PSI_ALERT_THRESHOLD", 0.20)
+PRIMARY_DATA_DIR = getattr(config, "PRIMARY_DATA_DIR", _ROOT / "02_NASA_CMAPSS_Turbofan")
 
 logger = logging.getLogger(__name__)
 
