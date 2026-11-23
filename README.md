@@ -231,6 +231,3 @@ Every module includes pure NumPy/stdlib fallbacks:
 | Pydantic | Schema validation | stdlib dataclasses |
 | Streamlit | Dashboard | CLI text summary |
 
-## 📄 License
-
-Open-source. Built for the Tata Elxsi TELIPORT Season 4 competition.
